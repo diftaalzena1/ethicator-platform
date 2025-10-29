@@ -12,33 +12,38 @@ st.set_page_config(
 from modules.sidebar import show_sidebar
 from tabs import (
     tab1_welcome_hub, tab2_ethics_lab, tab3_ethics_academy,
-    tab4_self_reflection, tab5_ethics_dashboard, tab5_ethics_dashboard,
+    tab4_self_reflection, tab5_ethics_dashboard,
 )
 
 # -------------------------
-# Styling umum (CSS)
+# Styling Umum (CSS)
 # -------------------------
 st.markdown("""
 <style>
 /* =============================
-   🎨 Sidebar & Konten
+   🌊 Background utama gradasi biru
+   ============================= */
+[data-testid="stAppViewContainer"] {
+    background: linear-gradient(to right, #1B3B5C, #2A5C7D, #4A8BB0) !important;
+    color: #F8FAFC !important;
+    min-height: 100vh !important;
+}
+
+/* Hilangkan header transparan */
+[data-testid="stHeader"] {
+    background: rgba(0,0,0,0);
+}
+
+/* =============================
+   🎨 Sidebar
    ============================= */
 [data-testid="stSidebar"] {
-    background-color: #142B45 !important;  
-    color: #F8FAFC !important;             
+    background-color: #142B45 !important;
+    color: #F8FAFC !important;
     padding: 10px !important;
 }
 [data-testid="stSidebar"] * {
     color: #F8FAFC !important;
-}
-
-/* =============================
-   🌊 Konten utama gradasi biru
-   ============================= */
-.stApp {
-    background: linear-gradient(to right, #1B3B5C, #2A5C7D, #4A8BB0) !important;
-    color: #F8FAFC !important;             
-    min-height: 100vh !important;
 }
 
 /* =============================
@@ -114,11 +119,13 @@ a:hover {
 }
 
 /* =============================
-   👤 Input username
+   👤 Input username (contoh)
    ============================= */
 [data-testid="stTextInput"][key="username_input"] input {
     color: navy !important;
     font-weight: 600 !important;
+    background-color: #F1F5F9 !important;
+    border-radius: 6px !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -128,18 +135,18 @@ a:hover {
 # -------------------------
 def show_footer():
     st.markdown("""
-        <div style='width: 100%; font-size:13px; text-align: center; color: gray; padding: 10px; margin-top: 80px;'>
+        <div style='width: 100%; font-size:13px; text-align: center; color: #CBD5E1; padding: 10px; margin-top: 80px;'>
             © 2025 Difta Alzena Sakhi · UPN “Veteran” Jawa Timur
         </div>
     """, unsafe_allow_html=True)
 
 # -------------------------
-# Sidebar + logo + login
+# Sidebar + Logo + Login
 # -------------------------
 show_sidebar()
 
 # -------------------------
-# Navigasi tab default
+# Navigasi Tab Default
 # -------------------------
 tab = st.sidebar.radio(
     "Choose Page:",
@@ -153,9 +160,8 @@ tab = st.sidebar.radio(
     key="tab_selection"
 )
 
-
 # -------------------------
-# Routing tab
+# Routing Tab
 # -------------------------
 if tab == "Welcome Hub":
     tab1_welcome_hub.run()
